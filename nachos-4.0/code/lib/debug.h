@@ -40,7 +40,7 @@ class Debug {
 };
 
 extern Debug *debug;
-
+using std::cerr;
 
 //----------------------------------------------------------------------
 // DEBUG

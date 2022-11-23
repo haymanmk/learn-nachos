@@ -17,6 +17,8 @@
 #include "stdio.h"
 #include "string.h"
 
+using namespace std;
+
 // Process control: abort, exit, and sleep
 extern void Abort();
 extern void Exit(int exitCode);

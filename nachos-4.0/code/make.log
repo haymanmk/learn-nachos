@@ -1,0 +1,237 @@
+/bin/csh -c "./configure"
+Please choose which machine you will use to run Nachos
+Copy appropriate file from ports/ into Makefile.dep
+Then run make depend
+cd threads; gmake depend
+gmake[1]: Entering directory '/media/psf/workspace/nachos/src/learn-nachos/nachos-4.0/code/threads'
+g++ -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DCHANGED -M ../lib/bitmap.cc ../lib/debug.cc ../lib/hash.cc ../lib/libtest.cc ../lib/list.cc ../lib/sysdep.cc ../machine/interrupt.cc ../machine/stats.cc ../machine/timer.cc ../threads/alarm.cc ../threads/kernel.cc ../threads/main.cc ../threads/scheduler.cc ../threads/synch.cc ../threads/synchlist.cc ../threads/thread.cc ../machine/elevatortest.cc ../machine/elevator.cc > makedep
+echo '/^# DO NOT DELETE THIS LINE/+2,$d' >eddep
+echo '$r makedep' >>eddep
+echo 'w' >>eddep
+echo 'q' >>eddep
+ed - Makefile < eddep
+rm eddep makedep 
+echo '# DEPENDENCIES MUST END AT END OF FILE' >> Makefile
+echo '# IF YOU PUT STUFF HERE IT WILL GO AWAY' >> Makefile
+echo '# see make depend above' >> Makefile
+gmake[1]: Leaving directory '/media/psf/workspace/nachos/src/learn-nachos/nachos-4.0/code/threads'
+cd threads; gmake nachos
+gmake[1]: Entering directory '/media/psf/workspace/nachos/src/learn-nachos/nachos-4.0/code/threads'
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DCHANGED -fpermissive -c ../lib/bitmap.cc
+In file included from ../lib/debug.h:17,
+                 from ../lib/bitmap.cc:10:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/bitmap.cc:10:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DCHANGED -fpermissive -c ../lib/debug.cc
+In file included from ../lib/debug.cc:10:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/debug.cc:11:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DCHANGED -fpermissive -c ../lib/libtest.cc
+In file included from ../lib/libtest.cc:10:
+../lib/libtest.h:15:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   15 | #endif MAIN_H
+      |        ^~~~~~
+In file included from ../lib/bitmap.h:19,
+                 from ../lib/libtest.cc:11:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../lib/libtest.cc:12:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../lib/list.h:140,
+                 from ../lib/libtest.cc:12:
+../lib/list.cc: In member function ‘void SortedList<T>::Insert(T)’:
+../lib/list.cc:239:9: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  239 |     if (IsEmpty()) {                    // if list is empty, put at front
+      |         ^~~~~~~
+../lib/list.cc: In member function ‘void SortedList<T>::SelfTest(T*, int)’:
+../lib/list.cc:370:17: warning: there are no arguments to ‘RemoveFront’ that depend on a template parameter, so a declaration of ‘RemoveFront’ must be available [-fpermissive]
+  370 |          q[i] = RemoveFront();
+      |                 ^~~~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../lib/libtest.cc:12:
+../lib/list.cc:373:13: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  373 |      ASSERT(IsEmpty());
+      |             ^~~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/libtest.cc: At global scope:
+../lib/libtest.cc:58:35: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   58 | static char *hashTestVector[] = { "0", "1", "2", "3", "4", "5", "6",
+      |                                   ^~~
+../lib/libtest.cc:58:40: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   58 | static char *hashTestVector[] = { "0", "1", "2", "3", "4", "5", "6",
+      |                                        ^~~
+../lib/libtest.cc:58:45: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   58 | static char *hashTestVector[] = { "0", "1", "2", "3", "4", "5", "6",
+      |                                             ^~~
+../lib/libtest.cc:58:50: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   58 | static char *hashTestVector[] = { "0", "1", "2", "3", "4", "5", "6",
+      |                                                  ^~~
+../lib/libtest.cc:58:55: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   58 | static char *hashTestVector[] = { "0", "1", "2", "3", "4", "5", "6",
+      |                                                       ^~~
+../lib/libtest.cc:58:60: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   58 | static char *hashTestVector[] = { "0", "1", "2", "3", "4", "5", "6",
+      |                                                            ^~~
+../lib/libtest.cc:58:65: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   58 | static char *hashTestVector[] = { "0", "1", "2", "3", "4", "5", "6",
+      |                                                                 ^~~
+../lib/libtest.cc:59:10: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   59 |          "7", "8", "9", "10", "11", "12", "13", "14"};
+      |          ^~~
+../lib/libtest.cc:59:15: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   59 |          "7", "8", "9", "10", "11", "12", "13", "14"};
+      |               ^~~
+../lib/libtest.cc:59:20: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   59 |          "7", "8", "9", "10", "11", "12", "13", "14"};
+      |                    ^~~
+../lib/libtest.cc:59:25: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   59 |          "7", "8", "9", "10", "11", "12", "13", "14"};
+      |                         ^~~~
+../lib/libtest.cc:59:31: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   59 |          "7", "8", "9", "10", "11", "12", "13", "14"};
+      |                               ^~~~
+../lib/libtest.cc:59:37: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   59 |          "7", "8", "9", "10", "11", "12", "13", "14"};
+      |                                     ^~~~
+../lib/libtest.cc:59:43: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   59 |          "7", "8", "9", "10", "11", "12", "13", "14"};
+      |                                           ^~~~
+../lib/libtest.cc:59:49: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   59 |          "7", "8", "9", "10", "11", "12", "13", "14"};
+      |                                                 ^~~~
+In file included from ../lib/list.h:17,
+                 from ../lib/libtest.cc:12:
+../lib/list.cc: In instantiation of ‘void SortedList<T>::SelfTest(T*, int) [with T = int]’:
+../lib/libtest.cc:78:23:   required from here
+../lib/list.cc:364:25: warning: ‘IsInList’ was not declared in this scope, and no declarations were found by argument-dependent lookup at the point of instantiation [-fpermissive]
+  364 |          ASSERT(IsInList(p[i]));
+      |                 ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:364:25: note: declarations in dependent base ‘List<int>’ are not found by unqualified lookup
+  364 |          ASSERT(IsInList(p[i]));
+      |                 ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:364:25: note: use ‘this->IsInList’ instead
+  364 |          ASSERT(IsInList(p[i]));
+      |                 ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:371:26: warning: ‘IsInList’ was not declared in this scope, and no declarations were found by argument-dependent lookup at the point of instantiation [-fpermissive]
+  371 |          ASSERT(!IsInList(q[i]));
+      |                  ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:371:26: note: declarations in dependent base ‘List<int>’ are not found by unqualified lookup
+  371 |          ASSERT(!IsInList(q[i]));
+      |                  ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:371:26: note: use ‘this->IsInList’ instead
+  371 |          ASSERT(!IsInList(q[i]));
+      |                  ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc: In instantiation of ‘void SortedList<T>::Insert(T) [with T = int]’:
+../lib/list.cc:363:3:   required from ‘void SortedList<T>::SelfTest(T*, int) [with T = int]’
+../lib/libtest.cc:78:23:   required from here
+../lib/list.cc:238:21: warning: ‘IsInList’ was not declared in this scope, and no declarations were found by argument-dependent lookup at the point of instantiation [-fpermissive]
+  238 |     ASSERT(!IsInList(item));
+      |             ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:238:21: note: declarations in dependent base ‘List<int>’ are not found by unqualified lookup
+  238 |     ASSERT(!IsInList(item));
+      |             ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:238:21: note: use ‘this->IsInList’ instead
+  238 |     ASSERT(!IsInList(item));
+      |             ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:258:20: warning: ‘IsInList’ was not declared in this scope, and no declarations were found by argument-dependent lookup at the point of instantiation [-fpermissive]
+  258 |     ASSERT(IsInList(item));
+      |            ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:258:20: note: declarations in dependent base ‘List<int>’ are not found by unqualified lookup
+  258 |     ASSERT(IsInList(item));
+      |            ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:258:20: note: use ‘this->IsInList’ instead
+  258 |     ASSERT(IsInList(item));
+      |            ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DCHANGED -fpermissive -c ../lib/sysdep.cc
+In file included from ../lib/debug.h:17,
+                 from ../lib/sysdep.cc:27:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/sysdep.cc:27:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+../lib/sysdep.cc: In function ‘bool PollFile(int)’:
+../lib/sysdep.cc:231:25: error: cannot convert ‘int*’ to ‘fd_set*’
+  231 |     retVal = select(32, &rfd, &wfd, &xfd, &pollTime);
+      |                         ^~~~
+      |                         |
+      |                         int*
+In file included from /usr/include/aarch64-linux-gnu/sys/types.h:179,
+                 from /usr/include/stdlib.h:395,
+                 from /usr/include/c++/11/cstdlib:75,
+                 from /usr/include/c++/11/ext/string_conversions.h:41,
+                 from /usr/include/c++/11/bits/basic_string.h:6608,
+                 from /usr/include/c++/11/string:55,
+                 from /usr/include/c++/11/bits/locale_classes.h:40,
+                 from /usr/include/c++/11/bits/ios_base.h:41,
+                 from /usr/include/c++/11/ios:42,
+                 from /usr/include/c++/11/ostream:38,
+                 from /usr/include/c++/11/iostream:39,
+                 from ../lib/sysdep.h:15,
+                 from ../lib/debug.h:18,
+                 from ../lib/sysdep.cc:27:
+/usr/include/aarch64-linux-gnu/sys/select.h:102:51: note:   initializing argument 2 of ‘int select(int, fd_set*, fd_set*, fd_set*, timeval*)’
+  102 | extern int select (int __nfds, fd_set *__restrict __readfds,
+      |                                ~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+../lib/sysdep.cc: In function ‘int Tell(int)’:
+../lib/sysdep.cc:334:12: error: ‘tell’ was not declared in this scope; did you mean ‘Tell’?
+  334 |     return tell(fd);
+      |            ^~~~
+      |            Tell
+gmake[1]: *** [../Makefile.common:125: sysdep.o] Error 1
+gmake[1]: Leaving directory '/media/psf/workspace/nachos/src/learn-nachos/nachos-4.0/code/threads'
+make: *** [Makefile:11: all] Error 2

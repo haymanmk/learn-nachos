@@ -17,3 +17,11 @@
 ../threads/thread.cc
 ../machine/elevatortest.cc
 ../machine/elevator.cc
+../userprog/addrspace.cc
+../userprog/exception.cc
+../userprog/synchconsole.cc
+../userprog/userkernel.cc
+../machine/console.cc
+../machine/machine.cc
+../machine/mipssim.cc
+../machine/translate.cc

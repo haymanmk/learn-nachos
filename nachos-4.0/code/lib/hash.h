@@ -36,6 +36,9 @@
 // lookup according to the hash function defined for the items
 // being put into the table.
 
+template <class Key,class T>
+class HashIterator;
+
 template <class Key, class T> 
 class HashTable {
   public:

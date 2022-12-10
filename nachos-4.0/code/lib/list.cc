@@ -17,6 +17,7 @@
 // of liability and disclaimer of warranty provisions.
 
 #include "copyright.h"
+#include "list.h"
 
 //----------------------------------------------------------------------
 // ListElement<T>::ListElement
@@ -236,24 +237,24 @@ SortedList<T>::Insert(T item)
 
     ASSERT(!IsInList(item));
     if (IsEmpty()) {			// if list is empty, put at front
-        first = element;
-        last = element;
-    } else if (compare(item, first->item) < 0) {  // item goes at front 
-	element->next = first;
-	first = element;
+        this->first = element;
+        this->last = element;
+    } else if (compare(item, this->first->item) < 0) {  // item goes at front 
+	element->next = this->first;
+	this->first = element;
     } else {		// look for first elt in list bigger than item
-        for (ptr = first; ptr->next != NULL; ptr = ptr->next) {
+        for (ptr = this->first; ptr->next != NULL; ptr = ptr->next) {
             if (compare(item, ptr->next->item) < 0) {
 		element->next = ptr->next;
 	        ptr->next = element;
-		numInList++;
+		this->numInList++;
 		return;
 	    }
 	}
-	last->next = element;		// item goes at end of list
-	last = element;
+	this->last->next = element;		// item goes at end of list
+	this->last = element;
     }
-    numInList++;
+    this->numInList++;
     ASSERT(IsInList(item));
 }
 
@@ -336,8 +337,8 @@ SortedList<T>::SanityCheck() const
     ListElement<T> *prev, *ptr;
 
     List<T>::SanityCheck();
-    if (first != last) {
-        for (prev = first, ptr = first->next; ptr != NULL; 
+    if (this->first != this->last) {
+        for (prev = this->first, ptr = this->first->next; ptr != NULL; 
 						prev = ptr, ptr = ptr->next) {
             ASSERT(compare(prev->item, ptr->item) <= 0);
         }

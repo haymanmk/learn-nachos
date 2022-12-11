@@ -4,7 +4,7 @@ Copy appropriate file from ports/ into Makefile.dep
 Then run make depend
 cd threads; gmake depend
 gmake[1]: Entering directory '/media/psf/workspace/nachos/src/learn-nachos/nachos-4.0/code/threads'
-g++ -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DCHANGED -M ../lib/bitmap.cc ../lib/debug.cc ../lib/hash.cc ../lib/libtest.cc ../lib/list.cc ../lib/sysdep.cc ../machine/interrupt.cc ../machine/stats.cc ../machine/timer.cc ../threads/alarm.cc ../threads/kernel.cc ../threads/main.cc ../threads/scheduler.cc ../threads/synch.cc ../threads/synchlist.cc ../threads/thread.cc ../machine/elevatortest.cc ../machine/elevator.cc > makedep
+g++ -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -M ../lib/bitmap.cc ../lib/debug.cc ../lib/hash.cc ../lib/libtest.cc ../lib/list.cc ../lib/sysdep.cc ../machine/interrupt.cc ../machine/stats.cc ../machine/timer.cc ../threads/alarm.cc ../threads/kernel.cc ../threads/main.cc ../threads/scheduler.cc ../threads/synch.cc ../threads/synchlist.cc ../threads/thread.cc ../machine/elevatortest.cc ../machine/elevator.cc > makedep
 echo '/^# DO NOT DELETE THIS LINE/+2,$d' >eddep
 echo '$r makedep' >>eddep
 echo 'w' >>eddep
@@ -17,7 +17,7 @@ echo '# see make depend above' >> Makefile
 gmake[1]: Leaving directory '/media/psf/workspace/nachos/src/learn-nachos/nachos-4.0/code/threads'
 cd threads; gmake nachos
 gmake[1]: Entering directory '/media/psf/workspace/nachos/src/learn-nachos/nachos-4.0/code/threads'
-g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DCHANGED -fpermissive -c ../lib/bitmap.cc
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../lib/bitmap.cc
 In file included from ../lib/debug.h:17,
                  from ../lib/bitmap.cc:10:
 ../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
@@ -27,7 +27,7 @@ In file included from ../lib/bitmap.cc:10:
 ../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
    84 | #endif DEBUG_H
       |        ^~~~~~~
-g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DCHANGED -fpermissive -c ../lib/debug.cc
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../lib/debug.cc
 In file included from ../lib/debug.cc:10:
 ../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
    38 | #endif UTILITY_H
@@ -36,7 +36,7 @@ In file included from ../lib/debug.cc:11:
 ../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
    84 | #endif DEBUG_H
       |        ^~~~~~~
-g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DCHANGED -fpermissive -c ../lib/libtest.cc
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../lib/libtest.cc
 In file included from ../lib/libtest.cc:10:
 ../lib/libtest.h:15:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
    15 | #endif MAIN_H
@@ -194,7 +194,7 @@ In file included from ../lib/list.h:17,
 ../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
    63 |     if (condition) {} else {                                            \
       |         ^~~~~~~~~
-g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DCHANGED -fpermissive -c ../lib/sysdep.cc
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../lib/sysdep.cc
 In file included from ../lib/debug.h:17,
                  from ../lib/sysdep.cc:27:
 ../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
@@ -204,34 +204,730 @@ In file included from ../lib/sysdep.cc:27:
 ../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
    84 | #endif DEBUG_H
       |        ^~~~~~~
-../lib/sysdep.cc: In function ‘bool PollFile(int)’:
-../lib/sysdep.cc:231:25: error: cannot convert ‘int*’ to ‘fd_set*’
-  231 |     retVal = select(32, &rfd, &wfd, &xfd, &pollTime);
-      |                         ^~~~
-      |                         |
-      |                         int*
-In file included from /usr/include/aarch64-linux-gnu/sys/types.h:179,
-                 from /usr/include/stdlib.h:395,
-                 from /usr/include/c++/11/cstdlib:75,
-                 from /usr/include/c++/11/ext/string_conversions.h:41,
-                 from /usr/include/c++/11/bits/basic_string.h:6608,
-                 from /usr/include/c++/11/string:55,
-                 from /usr/include/c++/11/bits/locale_classes.h:40,
-                 from /usr/include/c++/11/bits/ios_base.h:41,
-                 from /usr/include/c++/11/ios:42,
-                 from /usr/include/c++/11/ostream:38,
-                 from /usr/include/c++/11/iostream:39,
-                 from ../lib/sysdep.h:15,
-                 from ../lib/debug.h:18,
-                 from ../lib/sysdep.cc:27:
-/usr/include/aarch64-linux-gnu/sys/select.h:102:51: note:   initializing argument 2 of ‘int select(int, fd_set*, fd_set*, fd_set*, timeval*)’
-  102 | extern int select (int __nfds, fd_set *__restrict __readfds,
-      |                                ~~~~~~~~~~~~~~~~~~~^~~~~~~~~
-../lib/sysdep.cc: In function ‘int Tell(int)’:
-../lib/sysdep.cc:334:12: error: ‘tell’ was not declared in this scope; did you mean ‘Tell’?
-  334 |     return tell(fd);
-      |            ^~~~
-      |            Tell
-gmake[1]: *** [../Makefile.common:125: sysdep.o] Error 1
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../machine/interrupt.cc
+In file included from ../lib/debug.h:17,
+                 from ../lib/list.h:17,
+                 from ../machine/interrupt.h:39,
+                 from ../machine/interrupt.cc:24:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../machine/interrupt.h:39,
+                 from ../machine/interrupt.cc:24:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/main.h:13,
+                 from ../machine/interrupt.cc:25:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/kernel.h:13,
+                 from ../threads/main.h:23,
+                 from ../machine/interrupt.cc:25:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../machine/interrupt.cc:25:
+../threads/main.h:31:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   31 | #endif MAIN_H
+      |        ^~~~~~
+In file included from ../lib/list.h:140,
+                 from ../machine/interrupt.h:39,
+                 from ../machine/interrupt.cc:24:
+../lib/list.cc: In member function ‘void SortedList<T>::Insert(T)’:
+../lib/list.cc:239:9: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  239 |     if (IsEmpty()) {                    // if list is empty, put at front
+      |         ^~~~~~~
+../lib/list.cc: In member function ‘void SortedList<T>::SelfTest(T*, int)’:
+../lib/list.cc:370:17: warning: there are no arguments to ‘RemoveFront’ that depend on a template parameter, so a declaration of ‘RemoveFront’ must be available [-fpermissive]
+  370 |          q[i] = RemoveFront();
+      |                 ^~~~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../machine/interrupt.h:39,
+                 from ../machine/interrupt.cc:24:
+../lib/list.cc:373:13: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  373 |      ASSERT(IsEmpty());
+      |             ^~~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../machine/interrupt.cc: At global scope:
+../machine/interrupt.cc:29:34: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   29 | static char *intLevelNames[] = { "off", "on"};
+      |                                  ^~~~~
+../machine/interrupt.cc:29:41: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   29 | static char *intLevelNames[] = { "off", "on"};
+      |                                         ^~~~
+../machine/interrupt.cc:30:33: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   30 | static char *intTypeNames[] = { "timer", "disk", "console write",
+      |                                 ^~~~~~~
+../machine/interrupt.cc:30:42: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   30 | static char *intTypeNames[] = { "timer", "disk", "console write",
+      |                                          ^~~~~~
+../machine/interrupt.cc:30:50: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   30 | static char *intTypeNames[] = { "timer", "disk", "console write",
+      |                                                  ^~~~~~~~~~~~~~~
+../machine/interrupt.cc:31:25: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   31 |                         "console read", "elevator", "network send",
+      |                         ^~~~~~~~~~~~~~
+../machine/interrupt.cc:31:41: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   31 |                         "console read", "elevator", "network send",
+      |                                         ^~~~~~~~~~
+../machine/interrupt.cc:31:53: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   31 |                         "console read", "elevator", "network send",
+      |                                                     ^~~~~~~~~~~~~~
+../machine/interrupt.cc:32:25: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   32 |                         "network recv"};
+      |                         ^~~~~~~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../machine/interrupt.h:39,
+                 from ../machine/interrupt.cc:24:
+../lib/list.cc: In instantiation of ‘void SortedList<T>::Insert(T) [with T = PendingInterrupt*]’:
+../machine/interrupt.cc:265:20:   required from here
+../lib/list.cc:238:21: warning: ‘IsInList’ was not declared in this scope, and no declarations were found by argument-dependent lookup at the point of instantiation [-fpermissive]
+  238 |     ASSERT(!IsInList(item));
+      |             ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:238:21: note: declarations in dependent base ‘List<PendingInterrupt*>’ are not found by unqualified lookup
+  238 |     ASSERT(!IsInList(item));
+      |             ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:238:21: note: use ‘this->IsInList’ instead
+  238 |     ASSERT(!IsInList(item));
+      |             ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:258:20: warning: ‘IsInList’ was not declared in this scope, and no declarations were found by argument-dependent lookup at the point of instantiation [-fpermissive]
+  258 |     ASSERT(IsInList(item));
+      |            ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:258:20: note: declarations in dependent base ‘List<PendingInterrupt*>’ are not found by unqualified lookup
+  258 |     ASSERT(IsInList(item));
+      |            ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../lib/list.cc:258:20: note: use ‘this->IsInList’ instead
+  258 |     ASSERT(IsInList(item));
+      |            ~~~~~~~~^~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../machine/stats.cc
+In file included from ../lib/debug.h:17,
+                 from ../machine/stats.cc:11:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../machine/stats.cc:11:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../machine/timer.cc
+In file included from ../machine/timer.h:24,
+                 from ../machine/timer.cc:23:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/debug.h:17,
+                 from ../threads/main.h:13,
+                 from ../machine/timer.cc:24:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../threads/main.h:13,
+                 from ../machine/timer.cc:24:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../threads/scheduler.h:13,
+                 from ../threads/kernel.h:15,
+                 from ../threads/main.h:23,
+                 from ../machine/timer.cc:24:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../machine/timer.cc:24:
+../threads/main.h:31:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   31 | #endif MAIN_H
+      |        ^~~~~~
+In file included from ../lib/list.h:140,
+                 from ../threads/scheduler.h:13,
+                 from ../threads/kernel.h:15,
+                 from ../threads/main.h:23,
+                 from ../machine/timer.cc:24:
+../lib/list.cc: In member function ‘void SortedList<T>::Insert(T)’:
+../lib/list.cc:239:9: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  239 |     if (IsEmpty()) {                    // if list is empty, put at front
+      |         ^~~~~~~
+../lib/list.cc: In member function ‘void SortedList<T>::SelfTest(T*, int)’:
+../lib/list.cc:370:17: warning: there are no arguments to ‘RemoveFront’ that depend on a template parameter, so a declaration of ‘RemoveFront’ must be available [-fpermissive]
+  370 |          q[i] = RemoveFront();
+      |                 ^~~~~~~~~~~
+In file included from ../threads/main.h:13,
+                 from ../machine/timer.cc:24:
+../lib/list.cc:373:13: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  373 |      ASSERT(IsEmpty());
+      |             ^~~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../threads/alarm.cc
+In file included from ../threads/alarm.h:21,
+                 from ../threads/alarm.cc:12:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/debug.h:17,
+                 from ../threads/main.h:13,
+                 from ../threads/alarm.cc:13:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../threads/main.h:13,
+                 from ../threads/alarm.cc:13:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../threads/scheduler.h:13,
+                 from ../threads/kernel.h:15,
+                 from ../threads/main.h:23,
+                 from ../threads/alarm.cc:13:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/alarm.cc:13:
+../threads/main.h:31:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   31 | #endif MAIN_H
+      |        ^~~~~~
+In file included from ../lib/list.h:140,
+                 from ../threads/scheduler.h:13,
+                 from ../threads/kernel.h:15,
+                 from ../threads/main.h:23,
+                 from ../threads/alarm.cc:13:
+../lib/list.cc: In member function ‘void SortedList<T>::Insert(T)’:
+../lib/list.cc:239:9: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  239 |     if (IsEmpty()) {                    // if list is empty, put at front
+      |         ^~~~~~~
+../lib/list.cc: In member function ‘void SortedList<T>::SelfTest(T*, int)’:
+../lib/list.cc:370:17: warning: there are no arguments to ‘RemoveFront’ that depend on a template parameter, so a declaration of ‘RemoveFront’ must be available [-fpermissive]
+  370 |          q[i] = RemoveFront();
+      |                 ^~~~~~~~~~~
+In file included from ../threads/main.h:13,
+                 from ../threads/alarm.cc:13:
+../lib/list.cc:373:13: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  373 |      ASSERT(IsEmpty());
+      |             ^~~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../threads/kernel.cc
+In file included from ../lib/debug.h:17,
+                 from ../threads/kernel.cc:9:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../threads/kernel.cc:9:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/kernel.h:13,
+                 from ../threads/main.h:23,
+                 from ../threads/kernel.cc:10:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../threads/scheduler.h:13,
+                 from ../threads/kernel.h:15,
+                 from ../threads/main.h:23,
+                 from ../threads/kernel.cc:10:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/kernel.cc:10:
+../threads/main.h:31:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   31 | #endif MAIN_H
+      |        ^~~~~~
+In file included from ../threads/kernel.cc:15:
+../lib/libtest.h:15:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   15 | #endif MAIN_H
+      |        ^~~~~~
+In file included from ../threads/kernel.cc:16:
+../machine/elevatortest.h:15:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   15 | #endif ELEVATORTEST_H
+      |        ^~~~~~~~~~~~~~
+In file included from ../lib/list.h:140,
+                 from ../threads/scheduler.h:13,
+                 from ../threads/kernel.h:15,
+                 from ../threads/main.h:23,
+                 from ../threads/kernel.cc:10:
+../lib/list.cc: In member function ‘void SortedList<T>::Insert(T)’:
+../lib/list.cc:239:9: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  239 |     if (IsEmpty()) {                    // if list is empty, put at front
+      |         ^~~~~~~
+../lib/list.cc: In member function ‘void SortedList<T>::SelfTest(T*, int)’:
+../lib/list.cc:370:17: warning: there are no arguments to ‘RemoveFront’ that depend on a template parameter, so a declaration of ‘RemoveFront’ must be available [-fpermissive]
+  370 |          q[i] = RemoveFront();
+      |                 ^~~~~~~~~~~
+In file included from ../threads/kernel.cc:9:
+../lib/list.cc:373:13: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  373 |      ASSERT(IsEmpty());
+      |             ^~~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../threads/kernel.cc: In member function ‘void ThreadedKernel::Initialize()’:
+../threads/kernel.cc:59:32: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   59 |     currentThread = new Thread("main");
+      |                                ^~~~~~
+../threads/kernel.cc: In member function ‘void ThreadedKernel::SelfTest()’:
+../threads/kernel.cc:114:30: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  114 |    semaphore = new Semaphore("test", 0);
+      |                              ^~~~~~
+In file included from ../threads/synchlist.h:49,
+                 from ../threads/kernel.cc:14:
+../threads/synchlist.cc: In instantiation of ‘SynchList<T>::SynchList() [with T = int]’:
+../threads/kernel.cc:120:20:   required from here
+../threads/synchlist.cc:26:21: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   26 |     lock = new Lock("list lock");
+      |                     ^~~~~~~~~~~
+../threads/synchlist.cc:27:31: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   27 |     listEmpty = new Condition("list empty cond");
+      |                               ^~~~~~~~~~~~~~~~~
+../threads/synchlist.cc: In instantiation of ‘void SynchList<T>::SelfTest(T) [with T = int]’:
+../threads/kernel.cc:121:23:   required from here
+../threads/synchlist.cc:119:33: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  119 |     Thread *helper = new Thread("ping");
+      |                                 ^~~~~~
+../threads/synchlist.cc:123:18: warning: converting from ‘void (SynchList<int>::*)()’ to ‘VoidFunctionPtr’ {aka ‘void (*)(void*)’} [-Wpmf-conversions]
+  123 |     helper->Fork((VoidFunctionPtr) &SynchList<T>::SelfTestHelper, this);
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../threads/main.cc
+In file included from ../lib/debug.h:17,
+                 from ../threads/main.h:13,
+                 from ../threads/main.cc:21:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../threads/main.h:13,
+                 from ../threads/main.cc:21:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/kernel.h:13,
+                 from ../threads/main.h:23,
+                 from ../threads/main.cc:21:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../threads/scheduler.h:13,
+                 from ../threads/kernel.h:15,
+                 from ../threads/main.h:23,
+                 from ../threads/main.cc:21:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/main.cc:21:
+../threads/main.h:31:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   31 | #endif MAIN_H
+      |        ^~~~~~
+In file included from ../threads/main.cc:18:
+../lib/copyright.h:23:26: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   23 | static char *copyright = "Copyright (c) 1992-1993 The Regents of the University of California.  All rights reserved.";
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../lib/list.h:140,
+                 from ../threads/scheduler.h:13,
+                 from ../threads/kernel.h:15,
+                 from ../threads/main.h:23,
+                 from ../threads/main.cc:21:
+../lib/list.cc: In member function ‘void SortedList<T>::Insert(T)’:
+../lib/list.cc:239:9: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  239 |     if (IsEmpty()) {                    // if list is empty, put at front
+      |         ^~~~~~~
+../lib/list.cc: In member function ‘void SortedList<T>::SelfTest(T*, int)’:
+../lib/list.cc:370:17: warning: there are no arguments to ‘RemoveFront’ that depend on a template parameter, so a declaration of ‘RemoveFront’ must be available [-fpermissive]
+  370 |          q[i] = RemoveFront();
+      |                 ^~~~~~~~~~~
+In file included from ../threads/main.h:13,
+                 from ../threads/main.cc:21:
+../lib/list.cc:373:13: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  373 |      ASSERT(IsEmpty());
+      |             ^~~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../threads/main.cc: In function ‘int main(int, char**)’:
+../threads/main.cc:59:22: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   59 |     char *debugArg = "";
+      |                      ^~
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../threads/scheduler.cc
+In file included from ../lib/debug.h:17,
+                 from ../threads/scheduler.cc:22:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../threads/scheduler.cc:22:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../threads/scheduler.h:13,
+                 from ../threads/scheduler.cc:23:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/thread.h:41,
+                 from ../threads/scheduler.h:14,
+                 from ../threads/scheduler.cc:23:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../threads/scheduler.cc:24:
+../threads/main.h:31:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   31 | #endif MAIN_H
+      |        ^~~~~~
+In file included from ../lib/list.h:140,
+                 from ../threads/scheduler.h:13,
+                 from ../threads/scheduler.cc:23:
+../lib/list.cc: In member function ‘void SortedList<T>::Insert(T)’:
+../lib/list.cc:239:9: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  239 |     if (IsEmpty()) {                    // if list is empty, put at front
+      |         ^~~~~~~
+../lib/list.cc: In member function ‘void SortedList<T>::SelfTest(T*, int)’:
+../lib/list.cc:370:17: warning: there are no arguments to ‘RemoveFront’ that depend on a template parameter, so a declaration of ‘RemoveFront’ must be available [-fpermissive]
+  370 |          q[i] = RemoveFront();
+      |                 ^~~~~~~~~~~
+In file included from ../threads/scheduler.cc:22:
+../lib/list.cc:373:13: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  373 |      ASSERT(IsEmpty());
+      |             ^~~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../threads/synch.cc
+In file included from ../threads/thread.h:41,
+                 from ../threads/synch.h:21,
+                 from ../threads/synch.cc:36:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/debug.h:17,
+                 from ../lib/list.h:17,
+                 from ../threads/synch.h:22,
+                 from ../threads/synch.cc:36:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../threads/synch.h:22,
+                 from ../threads/synch.cc:36:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/main.h:13,
+                 from ../threads/synch.h:23,
+                 from ../threads/synch.cc:36:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/synch.h:23,
+                 from ../threads/synch.cc:36:
+../threads/main.h:31:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   31 | #endif MAIN_H
+      |        ^~~~~~
+In file included from ../lib/list.h:140,
+                 from ../threads/synch.h:22,
+                 from ../threads/synch.cc:36:
+../lib/list.cc: In member function ‘void SortedList<T>::Insert(T)’:
+../lib/list.cc:239:9: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  239 |     if (IsEmpty()) {                    // if list is empty, put at front
+      |         ^~~~~~~
+../lib/list.cc: In member function ‘void SortedList<T>::SelfTest(T*, int)’:
+../lib/list.cc:370:17: warning: there are no arguments to ‘RemoveFront’ that depend on a template parameter, so a declaration of ‘RemoveFront’ must be available [-fpermissive]
+  370 |          q[i] = RemoveFront();
+      |                 ^~~~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../threads/synch.h:22,
+                 from ../threads/synch.cc:36:
+../lib/list.cc:373:13: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  373 |      ASSERT(IsEmpty());
+      |             ^~~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../threads/synch.cc: In member function ‘void Semaphore::SelfTest()’:
+../threads/synch.cc:138:33: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  138 |     Thread *helper = new Thread("ping");
+      |                                 ^~~~~~
+../threads/synch.cc:141:26: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  141 |     ping = new Semaphore("ping", 0);
+      |                          ^~~~~~
+../threads/synch.cc: In constructor ‘Lock::Lock(char*)’:
+../threads/synch.cc:161:31: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  161 |     semaphore = new Semaphore("lock", 1);  // initially, unlocked
+      |                               ^~~~~~
+../threads/synch.cc: In member function ‘void Condition::Wait(Lock*)’:
+../threads/synch.cc:250:29: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  250 |      waiter = new Semaphore("condition", 0);
+      |                             ^~~~~~~~~~~
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../threads/thread.cc
+In file included from ../threads/thread.h:41,
+                 from ../threads/thread.cc:20:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/debug.h:17,
+                 from ../lib/list.h:17,
+                 from ../threads/synch.h:22,
+                 from ../threads/thread.cc:22:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../threads/synch.h:22,
+                 from ../threads/thread.cc:22:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/main.h:13,
+                 from ../threads/synch.h:23,
+                 from ../threads/thread.cc:22:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/synch.h:23,
+                 from ../threads/thread.cc:22:
+../threads/main.h:31:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   31 | #endif MAIN_H
+      |        ^~~~~~
+In file included from ../lib/list.h:140,
+                 from ../threads/synch.h:22,
+                 from ../threads/thread.cc:22:
+../lib/list.cc: In member function ‘void SortedList<T>::Insert(T)’:
+../lib/list.cc:239:9: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  239 |     if (IsEmpty()) {                    // if list is empty, put at front
+      |         ^~~~~~~
+../lib/list.cc: In member function ‘void SortedList<T>::SelfTest(T*, int)’:
+../lib/list.cc:370:17: warning: there are no arguments to ‘RemoveFront’ that depend on a template parameter, so a declaration of ‘RemoveFront’ must be available [-fpermissive]
+  370 |          q[i] = RemoveFront();
+      |                 ^~~~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../threads/synch.h:22,
+                 from ../threads/thread.cc:22:
+../lib/list.cc:373:13: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  373 |      ASSERT(IsEmpty());
+      |             ^~~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../threads/thread.cc: In member function ‘void Thread::Fork(VoidFunctionPtr, void*)’:
+../threads/thread.cc:100:65: warning: cast from ‘VoidFunctionPtr’ {aka ‘void (*)(void*)’} to ‘int’ loses precision [-fpermissive]
+  100 |     DEBUG(dbgThread, "Forking thread: " << name << " f(a): " << (int) func << " " << arg);
+      |                                                                 ^~~~~~~~~~
+../lib/debug.h:50:17: note: in definition of macro ‘DEBUG’
+   50 |         cerr << expr << "\n";                                           \
+      |                 ^~~~
+../threads/thread.cc: In member function ‘void Thread::StackAllocate(VoidFunctionPtr, void*)’:
+../threads/thread.cc:347:21: warning: cast from ‘void (*)()’ to ‘int’ loses precision [-fpermissive]
+  347 |     *(--stackTop) = (int) ThreadRoot;
+      |                     ^~~~~~~~~~~~~~~~
+../threads/thread.cc:358:29: warning: invalid conversion from ‘void (*)()’ to ‘void*’ [-fpermissive]
+  358 |     machineState[PCState] = ThreadRoot;
+      |                             ^~~~~~~~~~
+      |                             |
+      |                             void (*)()
+../threads/thread.cc:359:36: warning: invalid conversion from ‘void (*)()’ to ‘void*’ [-fpermissive]
+  359 |     machineState[StartupPCState] = ThreadBegin;
+      |                                    ^~~~~~~~~~~
+      |                                    |
+      |                                    void (*)()
+../threads/thread.cc:360:36: warning: invalid conversion from ‘VoidFunctionPtr’ {aka ‘void (*)(void*)’} to ‘void*’ [-fpermissive]
+  360 |     machineState[InitialPCState] = func;
+      |                                    ^~~~
+      |                                    |
+      |                                    VoidFunctionPtr {aka void (*)(void*)}
+../threads/thread.cc:362:37: warning: invalid conversion from ‘void (*)()’ to ‘void*’ [-fpermissive]
+  362 |     machineState[WhenDonePCState] = ThreadFinish;
+      |                                     ^~~~~~~~~~~~
+      |                                     |
+      |                                     void (*)()
+../threads/thread.cc: In member function ‘void Thread::SelfTest()’:
+../threads/thread.cc:434:28: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  434 |     Thread *t = new Thread("forked thread");
+      |                            ^~~~~~~~~~~~~~~
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../machine/elevator.cc
+In file included from ../machine/elevator.h:22,
+                 from ../machine/elevator.cc:11:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/debug.h:17,
+                 from ../lib/list.h:17,
+                 from ../machine/elevator.h:24,
+                 from ../machine/elevator.cc:11:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../machine/elevator.h:24,
+                 from ../machine/elevator.cc:11:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/kernel.h:12,
+                 from ../machine/elevator.cc:12:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../machine/elevator.cc:13:
+../threads/main.h:31:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   31 | #endif MAIN_H
+      |        ^~~~~~
+In file included from ../lib/list.h:140,
+                 from ../machine/elevator.h:24,
+                 from ../machine/elevator.cc:11:
+../lib/list.cc: In member function ‘void SortedList<T>::Insert(T)’:
+../lib/list.cc:239:9: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  239 |     if (IsEmpty()) {                    // if list is empty, put at front
+      |         ^~~~~~~
+../lib/list.cc: In member function ‘void SortedList<T>::SelfTest(T*, int)’:
+../lib/list.cc:370:17: warning: there are no arguments to ‘RemoveFront’ that depend on a template parameter, so a declaration of ‘RemoveFront’ must be available [-fpermissive]
+  370 |          q[i] = RemoveFront();
+      |                 ^~~~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../machine/elevator.h:24,
+                 from ../machine/elevator.cc:11:
+../lib/list.cc:373:13: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  373 |      ASSERT(IsEmpty());
+      |             ^~~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+g++ -g -Wall -I../lib -I../threads -I../machine -DTHREADS -Dx86 -DLINUX -DBSD -DCHANGED -fpermissive -c ../machine/elevatortest.cc
+In file included from ../machine/elevatortest.cc:12:
+../machine/elevatortest.h:15:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   15 | #endif ELEVATORTEST_H
+      |        ^~~~~~~~~~~~~~
+In file included from ../machine/elevator.h:22,
+                 from ../machine/elevatortest.cc:13:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/debug.h:17,
+                 from ../lib/list.h:17,
+                 from ../machine/elevator.h:24,
+                 from ../machine/elevatortest.cc:13:
+../lib/utility.h:38:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   38 | #endif UTILITY_H
+      |        ^~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../machine/elevator.h:24,
+                 from ../machine/elevatortest.cc:13:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/main.h:13,
+                 from ../threads/synch.h:23,
+                 from ../machine/elevatortest.cc:14:
+../lib/debug.h:84:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   84 | #endif DEBUG_H
+      |        ^~~~~~~
+In file included from ../threads/synch.h:23,
+                 from ../machine/elevatortest.cc:14:
+../threads/main.h:31:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+   31 | #endif MAIN_H
+      |        ^~~~~~
+In file included from ../lib/list.h:140,
+                 from ../machine/elevator.h:24,
+                 from ../machine/elevatortest.cc:13:
+../lib/list.cc: In member function ‘void SortedList<T>::Insert(T)’:
+../lib/list.cc:239:9: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  239 |     if (IsEmpty()) {                    // if list is empty, put at front
+      |         ^~~~~~~
+../lib/list.cc: In member function ‘void SortedList<T>::SelfTest(T*, int)’:
+../lib/list.cc:370:17: warning: there are no arguments to ‘RemoveFront’ that depend on a template parameter, so a declaration of ‘RemoveFront’ must be available [-fpermissive]
+  370 |          q[i] = RemoveFront();
+      |                 ^~~~~~~~~~~
+In file included from ../lib/list.h:17,
+                 from ../machine/elevator.h:24,
+                 from ../machine/elevatortest.cc:13:
+../lib/list.cc:373:13: warning: there are no arguments to ‘IsEmpty’ that depend on a template parameter, so a declaration of ‘IsEmpty’ must be available [-fpermissive]
+  373 |      ASSERT(IsEmpty());
+      |             ^~~~~~~
+../lib/debug.h:63:9: note: in definition of macro ‘ASSERT’
+   63 |     if (condition) {} else {                                            \
+      |         ^~~~~~~~~
+../machine/elevatortest.cc: In function ‘void ElevatorSelfTest()’:
+../machine/elevatortest.cc:74:37: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   74 |     Thread *controller = new Thread("controller");
+      |                                     ^~~~~~~~~~~~
+../machine/elevatortest.cc:76:22: warning: invalid conversion from ‘void (*)(ElevatorInspector*)’ to ‘VoidFunctionPtr’ {aka ‘void (*)(void*)’} [-fpermissive]
+   76 |     controller->Fork(ControllerTest, inspector);
+      |                      ^~~~~~~~~~~~~~
+      |                      |
+      |                      void (*)(ElevatorInspector*)
+In file included from ../threads/synch.h:21,
+                 from ../machine/elevatortest.cc:14:
+../threads/thread.h:95:31: note:   initializing argument 1 of ‘void Thread::Fork(VoidFunctionPtr, void*)’
+   95 |     void Fork(VoidFunctionPtr func, void *arg);
+      |               ~~~~~~~~~~~~~~~~^~~~
+../machine/elevatortest.cc: In constructor ‘ElevatorInspector::ElevatorInspector()’:
+../machine/elevatortest.cc:90:33: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   90 |     riderWakeup = new Semaphore("rider", 0);
+      |                                 ^~~~~~~
+../machine/elevatortest.cc:91:38: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   91 |     controllerWakeup = new Semaphore("controller", 0);
+      |                                      ^~~~~~~~~~~~
+/lib/cpp  -P -I../lib -I../threads -I../machine -Dx86 -DLINUX -DBSD ../threads/switch.s > swtch.s
+as -o switch.o swtch.s
+swtch.s: Assembler messages:
+swtch.s:5: Error: unknown mnemonic `pushl' -- `pushl %ebp'
+swtch.s:6: Error: unknown mnemonic `movl' -- `movl %esp,%ebp'
+swtch.s:7: Error: unknown mnemonic `pushl' -- `pushl %edx'
+swtch.s:8: Error: unknown mnemonic `call' -- `call %ecx'
+swtch.s:9: Error: unknown mnemonic `call' -- `call %esi'
+swtch.s:10: Error: unknown mnemonic `call' -- `call %edi'
+swtch.s:12: Error: unknown mnemonic `movl' -- `movl %ebp,%esp'
+swtch.s:13: Error: unknown mnemonic `popl' -- `popl %ebp'
+swtch.s:18: Error: unknown mnemonic `movl' -- `movl %eax,_eax_save#save the value of eax'
+swtch.s:19: Error: unknown mnemonic `movl' -- `movl 4(%esp),%eax#move pointer to t1 into eax'
+swtch.s:20: Error: unknown mnemonic `movl' -- `movl %ebx,8(%eax)#save registers'
+swtch.s:21: Error: unknown mnemonic `movl' -- `movl %ecx,12(%eax)'
+swtch.s:22: Error: unknown mnemonic `movl' -- `movl %edx,16(%eax)'
+swtch.s:23: Error: unknown mnemonic `movl' -- `movl %esi,24(%eax)'
+swtch.s:24: Error: unknown mnemonic `movl' -- `movl %edi,28(%eax)'
+swtch.s:25: Error: unknown mnemonic `movl' -- `movl %ebp,20(%eax)'
+swtch.s:26: Error: unknown mnemonic `movl' -- `movl %esp,0(%eax)#save stack pointer'
+swtch.s:27: Error: unknown mnemonic `movl' -- `movl _eax_save,%ebx#get the saved value of eax'
+swtch.s:28: Error: unknown mnemonic `movl' -- `movl %ebx,4(%eax)#store it'
+swtch.s:29: Error: unknown mnemonic `movl' -- `movl 0(%esp),%ebx#get return address from stack into ebx'
+swtch.s:30: Error: unknown mnemonic `movl' -- `movl %ebx,32(%eax)#save it into the pc storage'
+swtch.s:31: Error: unknown mnemonic `movl' -- `movl 8(%esp),%eax#move pointer to t2 into eax'
+swtch.s:32: Error: unknown mnemonic `movl' -- `movl 4(%eax),%ebx#get new value for eax into ebx'
+swtch.s:33: Error: unknown mnemonic `movl' -- `movl %ebx,_eax_save#save it'
+swtch.s:34: Error: unknown mnemonic `movl' -- `movl 8(%eax),%ebx#retore old registers'
+swtch.s:35: Error: unknown mnemonic `movl' -- `movl 12(%eax),%ecx'
+swtch.s:36: Error: unknown mnemonic `movl' -- `movl 16(%eax),%edx'
+swtch.s:37: Error: unknown mnemonic `movl' -- `movl 24(%eax),%esi'
+swtch.s:38: Error: unknown mnemonic `movl' -- `movl 28(%eax),%edi'
+swtch.s:39: Error: unknown mnemonic `movl' -- `movl 20(%eax),%ebp'
+swtch.s:40: Error: unknown mnemonic `movl' -- `movl 0(%eax),%esp#restore stack pointer'
+swtch.s:41: Error: unknown mnemonic `movl' -- `movl 32(%eax),%eax#restore return address into eax'
+swtch.s:42: Error: unknown mnemonic `movl' -- `movl %eax,4(%esp)#copy over the ret address on the stack'
+swtch.s:43: Error: unknown mnemonic `movl' -- `movl _eax_save,%eax'
+gmake[1]: *** [../Makefile.common:129: switch.o] Error 1
 gmake[1]: Leaving directory '/media/psf/workspace/nachos/src/learn-nachos/nachos-4.0/code/threads'
 make: *** [Makefile:11: all] Error 2
